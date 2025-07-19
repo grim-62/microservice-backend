@@ -1,0 +1,48 @@
+version: '3.9'
+
+services:
+  gateway:
+    build: ./gateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - user
+      - post
+
+  user:
+    build: ./user
+    ports:
+      - "3001:3001"
+    environment:
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=secret
+      - DB_NAME=userdb
+    depends_on:
+      - mysql
+
+  post:
+    build: ./post
+    ports:
+      - "3002:3002"
+    environment:
+      - DB_HOST=localhost
+      - DB_USER=root
+      - DB_PASS=Prashant@62d
+      - DB_NAME=learn1
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: Prashant@62d
+    volumes:
+      - mysql-data:/var/lib/mysql
+
+volumes:
+  mysql-data:

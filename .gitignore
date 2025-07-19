@@ -1,0 +1,15 @@
+# Logs
+*.log
+logs/
+
+# Docker
+*.pid
+*.tar
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
