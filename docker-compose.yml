@@ -38,9 +38,9 @@ services:
     container_name: mysql
     restart: always
     ports:
-      - "3306:3306"
+      - "3307:3306"
     environment:
-      MYSQL_ROOT_PASSWORD: Prashant@62d
+      MYSQL_ROOT_PASSWORD: secret
     volumes:
       - mysql-data:/var/lib/mysql
 
