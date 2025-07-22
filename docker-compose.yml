@@ -1,4 +1,4 @@
-version: '3.9'
+version: "3.9"
 
 services:
   gateway:
@@ -26,15 +26,13 @@ services:
     ports:
       - "3002:3002"
     environment:
-      - DB_HOST=localhost
-      - DB_USER=root
-      - DB_PASS=Prashant@62d
-      - DB_NAME=learn1
+      - DB_HOST=mongodb  
+      - DB_NAME=your-db-name
     depends_on:
-      - mysql
+      - mongodb
 
   mysql:
-    image: mysql:8.0
+    image: mysql:8.0  
     container_name: mysql
     restart: always
     ports:
@@ -44,5 +42,15 @@ services:
     volumes:
       - mysql-data:/var/lib/mysql
 
+  mongodb:
+    image: mongo:6.0
+    container_name: mongodb
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
 volumes:
   mysql-data:
+  mongo-data:
